@@ -5,19 +5,30 @@ import com.luna.frontend.repositories.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UrlService {
 
     @Autowired
     private UrlRepository urlRepository;
 
-    public void create(Url url){
-        this.urlRepository.save(url);
+    public Url create(Url url){
+        url.setCreated_at();
+        return this.urlRepository.save(url);
     }
 
-    public void update(Url url){
+    public Optional<Url> readByShortUrl(String shortUrl){
+        return this.urlRepository.findByShortUrl(shortUrl);
+    }
+
+    public Optional<Url> readByLongUrl(String longUrl){
+        return this.urlRepository.findByLongUrl(longUrl);
+    }
+
+    public Url update(Url url){
         url.countPlusAccess();
-        this.urlRepository.save(url);
+        return this.urlRepository.save(url);
     }
 
     public void delete(Url url){
