@@ -21,6 +21,7 @@ public class UrlController {
     private UrlService urlService;
 
     @GetMapping("/{shortUrl}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Url> find(@PathVariable String shortUrl) throws URISyntaxException {
         Url url = this.urlService.readByShortUrl(shortUrl).orElse(null);
         if(url == null){
@@ -42,6 +43,7 @@ public class UrlController {
     }
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Url> create(@RequestBody Url url){
 
         Url link = this.urlService.readByLongUrl(url.getLongUrl()).orElse(null);

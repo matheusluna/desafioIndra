@@ -1,0 +1,27 @@
+<div class="container">
+  <section class="center-align">
+    <h3>URL Generator</h3>
+  </section>
+  <section>
+    <div class="row">
+      <div class="input-field col s12 center-align">
+        <input [(ngModel)]="url" type="text" placeholder="Insira a Url!">
+        <button (click)="gerar()" class="btn blue">Gerar URL</button>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="shortUrl">
+    <div class="row">
+      <div class="container">
+        <div class="card">
+          <div class="card-content">
+            <span><b>URL:</b> {{shortUrl.longUrl}}</span><br>
+            <span><b>URL Encurtada: </b><a href="http://localhost:8080/{{shortUrl.shortUrl}}">http://localhost:8080/{{shortUrl.shortUrl}}</a></span><br>
+            <span><b>Data de Criação: </b>{{shortUrl.created_at}}</span><br>
+            <span><b>Nº de Acessos: </b>{{shortUrl.contador}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
