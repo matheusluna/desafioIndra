@@ -10,11 +10,14 @@ import java.util.Optional;
 @Service
 public class UrlService {
 
+    private UrlShoter urlShoter = UrlShoter.getInstance();
+
     @Autowired
     private UrlRepository urlRepository;
 
     public Url create(Url url){
         url.setCreated_at();
+        url.setShortUrl(urlShoter.toBase10(url.getLongUrl()));
         return this.urlRepository.save(url);
     }
 
