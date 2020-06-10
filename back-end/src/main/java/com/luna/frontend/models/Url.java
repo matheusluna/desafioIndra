@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 public class Url {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
     private String longUrl;
@@ -25,6 +25,10 @@ public class Url {
         this.longUrl = longUrl;
         this.shortUrl = shortUrl;
         this.created_at = new Date();
+        this.contador = Long.valueOf(0);
+    }
+
+    public void startCount(){
         this.contador = Long.valueOf(0);
     }
 

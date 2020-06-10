@@ -18,6 +18,7 @@ public class UrlService {
     public Url create(Url url){
         url.setCreated_at();
         url.setShortUrl(urlShoter.toBase10(url.getLongUrl()));
+        url.startCount();
         return this.urlRepository.save(url);
     }
 

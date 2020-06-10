@@ -20,7 +20,7 @@ public class UrlController {
     @Autowired
     private UrlService urlService;
 
-    @GetMapping(value = "/{shortURL}")
+    @GetMapping("/{shortUrl}")
     public ResponseEntity<Url> find(@PathVariable String shortUrl) throws URISyntaxException {
         Url url = this.urlService.readByShortUrl(shortUrl).orElse(null);
         if(url == null){
@@ -44,9 +44,8 @@ public class UrlController {
     @PostMapping
     public ResponseEntity<Url> create(@RequestBody Url url){
 
-        Url link = urlService.readByLongUrl(url.getLongUrl()).orElse(null);
-
-        if(link == null) link = urlService.create(url);
+        Url link = this.urlService.readByLongUrl(url.getLongUrl()).orElse(null);
+        if (link == null) link = urlService.create(url);
 
         return ResponseEntity.ok().body(link);
     }
